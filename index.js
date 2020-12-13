@@ -57,3 +57,4 @@ app.get('/users', (req, res) => {
 })
 
 app.listen(3310, () => console.log('Server started'));
+// http://localhost:3310/users
