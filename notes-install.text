@@ -1,0 +1,18 @@
+Download MySQL community server
+    - MySQL
+    - MySQL Workbench
+
+We need to know where the folder is located to run mysql or we can can use the following to add it to the SESSION (TEMP)
+    export PATH=${PATH}:usr/local/mysql/bin 
+
+or we can use echo 'export PATH="/user/local/mysql/bin:$PATH"' >> ~/.bash_profile
+
+The above needs to be done using sudo nano /etc/paths
+    1. Enter password
+    2. ^O to write out a new file path 
+    3. Enter and enter again
+
+Now MySQL command can be run from anywhere
+
+Login with mysql -u root - p
+

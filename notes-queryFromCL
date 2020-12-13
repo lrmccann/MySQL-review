@@ -1,0 +1,61 @@
+Login
+    - mysql -u root -p
+
+Create user, usually want to do this when creating a new DB, use the following command to create a new user
+    - CREATE USER 'random'@'localhost' IDENTIFIED BY 'password';
+
+To show all current users, run the following command after you log in
+    - SELECT user, host FROM mysql.user;
+
+Now that we have a created a user we need to grant it some privileges, run the following command 
+    - GRANT ALL PRIVILEGES ON * . * TO 'random'@'localhost';
+
+After granting privileges to a user, we need to clear the grants table using the following command
+    - FLUSH PRIVILEGES;
+
+To show user's current privileges, run
+    - SHOW GRANTS FOR 'random'@'localhost';
+
+Now we need to log out of mysql and log back in as created user, run
+    - exit;
+    - mysql -u random -p
+
+Lets create a database, once logged in, run :
+    - CREATE DATABASE test
+
+To show databases for user, run
+    - SHOW DATABASES;
+
+Now we need to specify which db to use, run
+    - USE test;
+
+To create some tables we run
+    - CREATE TABLE test-users(
+        id INT AUTO_INCREMENT,
+        first_name VARCHAR(100),
+        last_name VARCHAR(100),
+        email VARCHAR(75),
+        password VARCHAR(250),
+        location VARCHAR(100),
+        dept VARCHAR(75),
+        is_admin TINYINT(1),
+        register_date DATETIME NOT NULL,
+        PRIMARY KEY(id)
+    );
+
+AUTO_INCREMENT === auto create ids as the tables and rows are filled
+VARCHAR === is a string
+VARCHAR(#) === the number refers to the max char the field can contain, for VARCHAR the max total is 275
+TINYINT === a boolean; 1 being true; 0 being false
+DATETIME === just shows the time the user was created
+PRIMARY KEY === sets the primary key for the table, () contain whatever value you want to make primary key
+TEXT === any text, (#) has a limit of 65,000 characters
+
+To show all tables in db run
+    - SHOW TABLES
+
+To drop a table run
+    - DROP TABLE tablename
+
+To delete a whole database
+    - DROP DATABASE databasename

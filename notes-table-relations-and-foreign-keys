@@ -1,0 +1,82 @@
+CREATED A NEW TABLE FOR THIS
+
+CREATE TABLE posts(
+					id INT auto_increment,
+                    user_id INT,
+                    title VARCHAR(100),
+                    body text,
+                    publish_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    PRIMARY KEY(id),
+                    FOREIGN KEY(user_id) REFERENCES users(id)
+				);
+
+Here we are setting the user_id field as the PRIMARY KEY, and we are also setting a FOREIGN KEY,
+which required a refrence to another table, we are setting the FK of this table to the PK of the users table
+
+fill in some data for new table : 
+
+    - INSERT INTO posts(user_id , title , body) 
+      values(1 , "title one" , "this is body one") , (3 , "title two" , "this is body two") ,
+       (1 , "title three" , "this is body three") , (2, "title four" , "this is body four"); 
+
+Now if we do SELECT * FROM posts; we get the table data we just added plus the id coming from our users table
+
+
+If we want to get data from two different tables that are related we need to use JOIN
+    - Types of Joins
+        1. Inner Join - returns rows when there is a match in both tables
+        2. Left Join - returns all rows from the left table, EVEN IF THERE IS NO MATCH
+        3. Right Join - returns all rows from the right table, EVER IF THERE IS NO MATCH
+    - Get user first and last name along with their post and their publish date
+        SELECT
+            users.first_name,
+            users.last_name,
+            posts.title,
+            posts.publish_date
+        FROM users 
+        INNER JOIN posts
+        ON users.id = posts.user_id
+        ORDER BY posts.title;
+    - In the above example we are selecting different fields from our two tables : users and posts
+      then we are inner joining(only returns items that match) posts and setting where we would like it 
+      to match the two tables using ON and finally ordering the query data by posts.title
+
+
+CREATING ONE MORE TABLE TO SHOW THE RELATIONSHIP BETWEEN A PRIMARY KEY AND TWO FOREIGN KEYS
+
+    CREATE TABLE comments(
+        id INT AUTO_INCREMENT,
+        post_id INT,
+        user_id INT,
+        body TEXT,
+        publish_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY(id),
+        FOREIGN KEY(post_id) REFERENCES posts(id),
+        FOREIGN KEY(user_id) REFERENCES users(id)
+    );
+If we do SELECT * FROM comments, we now get id(from comments id) , post_id(from posts id) , and user_id(from users id)
+
+Now we'll get comments of a post
+    - SELECT
+        comments.body,
+        posts.title
+      FROM comments
+      LEFT JOIN posts ON posts.id = comments.post_id
+      ORDER BY posts.title
+
+This returns all posts that have been commented on , showing the id of the comment and the id of the post;
+If we flip the LEFT JOIN TO A RIGHT JOIN, we get back all posts even if the have not been commented on
+
+
+Another Example 
+    - SELECT
+		posts.title,
+        comments.body,
+        users.first_name,
+        users.last_name
+      FROM comments
+      INNER JOIN posts ON posts.id = comments.post_id
+      INNER JOIN users ON users.id = comments.user_id
+      ORDER BY posts.id;
+
+This returns all posts commented on and the first and last name of the user that commented on the post

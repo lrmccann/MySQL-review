@@ -1,0 +1,100 @@
+MySql workbench by default will display root user connections, to change a connection or to add a connection use the + button
+
+    Create New Connection:
+        - Connection Name: random-test-connection
+        - Connection Method: Standard (TCP/IP)
+        - Hostname: 000.0.0.0(ip address) Port: 0000(port)
+        - Username : random
+        - Default Schema: test
+
+To run command either click lightning bolt or do command enter
+
+*** Don't forget to USE database ***
+
+To show all info from table run
+    - SELECT * FROM table
+
+To show specific fields run
+    - SELECT first_name , last_name FROM users;
+    - SELECT email , location FROM users;
+
+Insert column or row
+    - INSERT INTO table(
+        first_name,
+        last_name,
+        email,
+        password,
+        location,
+        department,
+        is_admin,
+        register_date
+    )
+    values('John' , 'Doe' , 'JohnDoe@gmail.com' , 'JohnDoe123' , 'Rockford' , 'development' , 1 , now()); 
+
+
+The WHERE claus can be used like so
+    - SELECT * FROM users WHERE location="Chicago";
+        * returns all users in Chicago
+    - SELECT * FROM users WHERE location="Chicago" AND dept="Web Dev";
+        * returns all users in chicago with the dept Web Dev
+    - SELECT * FROM users WHERE is_admin > 0;
+
+To Delete table data (REMEMBER TO USE WHERE OR YOU MAY DELETE IMPORTANT DATA)
+    - DELETE FROM users WHERE id = 6;
+
+Updating table data
+    - UPDATE users SET email = "loganrmccann@gmail.com" WHERE id = 1;
+
+Add a column to table
+    - ALTER TABLE users ADD age VARCHAR(3);
+
+To alter a whole columns data type
+    - ALTER TABLE users MODIFY COLUMN age INT(3);
+
+AFTER USING THE SELECT * FROM table , you can also modify the column's values by double clicking and inserting
+a value, then click "apply" and confirm (***IMPORTANT***)
+
+Using SELECT to order by
+    - SELECT * FROM users ORDER BY last_name DESC;
+        Returns data ordered by last_name in descending order
+    - SELECT * FROM users ORDER BY last_name ASC;
+        Returns data ordered by last_name in ascending order
+
+To return a list of multiple fields,
+    - SELECT CONCAT(first_name, ' ' , last_name) AS 'Full Name' , dept
+        Returns column "Full Name" with both fields added together as well as the dept column
+
+If we want to get data without repeats
+    - SELECT DISTINCT location FROM users;
+
+We can also select ranges
+    - SELECT * FROM users WHERE age BETWEEN 20 AND 30;
+
+Query selector LIKE, is used for full text searching, ie. if you want to search a blog post for a specific word
+    - SELECT * FROM users WHERE dept LIKE 'd%' ;
+        This will match anything in dept that STARTS with a d 
+    - SELECT * FROM users WHERE dept LIKE '%r' ;
+        This will match anything in dept ENDING with a t
+    - SELECT * FROM users WHERE dept LIKE "%en%"
+        This will match anything in dept that contains an en, having a beg and trailing % means it can start with anything or end with anything
+
+Query selector NOT LIKE, is used for full text searching to return data that does not contain
+    - SELECT * FROM users WHERE dept NOT LIKE '%g' ;
+        Returns anything in dept that does not end with a g
+    - SELECT * FROM users WHERE dept NOT LIKE 'a%'
+        Returns anything in dept that does not start with an a
+
+Query selector IN, this returns data in a list 
+    - SELECT * FROM users WHERE dept IN('Web Developer' , 'Dentist');
+        Returns all user data for rows that match dept === Web Developer || dept === Dentist
+    
+INDEXES are used on columns and tables to speed up queries and find things more effeciently
+    - PRIMARY KEYS are automatically idexed, however we can add custom indexes to indexes we will be searching on/by a lot
+    - Indexes are displayed in the current table you are using 
+    - Let's say we are going to be searching by location a lot, we can create a location index like so : 
+            CREATE INDEX LIndex on users(location);
+    - To remove an index 
+        DROP INDEX LIndex on users;
+
+
+

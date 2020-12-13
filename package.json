@@ -1,0 +1,23 @@
+{
+  "name": "mysql-crash-course-review",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lrmccann/MySQL-review.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lrmccann/MySQL-review/issues"
+  },
+  "homepage": "https://github.com/lrmccann/MySQL-review#readme",
+  "dependencies": {
+    "@mysql/xdevapi": "8.0.22",
+    "express": "^4.17.1"
+  }
+}

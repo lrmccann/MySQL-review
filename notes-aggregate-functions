@@ -1,0 +1,25 @@
+AGGREGATE FUNCTIONS
+
+SELECT COUNT(id) FROM users;
+    returns number of users;
+
+SELECT COUNT(id) FROM posts;
+    returns number of posts
+
+
+SELECT MAX(age) FROM users;
+    returns the greatest age from all the users
+
+
+SELECT SUM(age) FROM users;
+    returns the total of all ages added together from users table
+
+SELECT UCASE(first_name) , LCASE(last_name) FROM users;
+    returns the values of first_name to CAPITAL and the values of last_name to lower
+
+SELECT location , COUNT(location) FROM users GROUP BY location;
+    returns each distinct location and the count for each location(how many users have that location as their location)
+
+SELECT location , COUNT(location) FROM users WHERE location = "Chicago" GROUP BY location;
+    returns Chicago as location and then how many people have Chicago as their location, like a regular COUNT AND GROUP BY,
+    but its more specific

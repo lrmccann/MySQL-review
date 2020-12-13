@@ -1,0 +1,42 @@
+What is MySQL?
+    - MySQL is a relational database management system that uses Structured Query Language (SQL)
+    - It is cross platform and can be used with Node, Python, PHP, etc.
+
+Relational database
+    - Based on "relational model" of data
+    - Virtually all RDBMS use SQL to manage them
+    - Uses tables, columns, and rows
+
+Data Types
+    - Numeric
+        * INT
+        * TINYINT
+        * BIGINT
+        * FLOAT
+    - String
+        * VARCHAR
+        * TEXT
+        * CHAR
+    - Dates
+        * DATE
+        * DATETIME
+        *TIMESTAMP
+    - Other
+        * BINARY
+        * JSON
+
+Installation and Enviroment 
+    - Local
+        * Terminal/GUI install - standalone server
+        * XAMPP, MAMP, WAMP (Software suite)
+            a. Come with Apache server
+            b. PHP 
+            c. MySQL
+    - Production
+        * Terminal Installation via Linux package manager
+        * Server software (CPanel , etc)
+
+Management Tools
+    - Terminal/ Command Line / Shell
+    - Desktop Tools - MySql Workbench
+    - Web based tools - PHPMyAdmin
